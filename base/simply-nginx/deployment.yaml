@@ -1,0 +1,29 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simply-nginx
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: simply-nginx
+      labels:
+        base: simply-nginx
+    spec:
+      containers:
+      - name: simply-nginx
+        image: nginx:alpine
+        ports:
+        - name: simply-nginx
+          containerPort: 80
+        volumeMounts:
+        - name: simply-nginx-conf
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+      volumes:
+      - name: simply-nginx-conf
+        configMap:
+          name: simply-nginx-conf
+

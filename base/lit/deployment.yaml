@@ -1,0 +1,39 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lit
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: lit
+      labels:
+        base: lit
+    spec:
+      # imagePullSecrets:
+      # - name: ap-northeast-2-ecr-registry
+      containers:
+      - name: lit
+        image: lit:latest
+        imagePullPolicy: Always
+        # command: [ "/bin/sh", "-c", "/apps/lit/lit /etc/config/application.conf" ]
+        # volumeMounts:
+        # - mountPath: /etc/config
+          # name: config
+        # volumeMounts:
+          # - name: lit-storage
+            # mountPath: /apps/lit
+      # volumes:
+      # - name: config
+        # configMap:
+          # name: lit
+          # items:
+          # - key: application.conf
+            # path: application.conf
+      # volumes:
+        # - name: lit-storage
+          # persistentVolumeClaim:
+            # claimName: lit-pvc
+

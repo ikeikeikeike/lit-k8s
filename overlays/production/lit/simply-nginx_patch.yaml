@@ -1,0 +1,19 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simply-nginx
+spec:
+  template:
+    spec:
+      containers:
+      - name: simply-nginx
+        volumeMounts:
+        - name: lit-nginx-conf
+          mountPath: /etc/nginx/sites-enabled/lit.conf
+          subPath: lit.conf
+      volumes:
+      - name: lit-nginx-conf
+        configMap:
+          name: lit-nginx-conf
