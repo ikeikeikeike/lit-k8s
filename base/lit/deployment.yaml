@@ -12,11 +12,9 @@ spec:
       labels:
         base: lit
     spec:
-      # imagePullSecrets:
-      # - name: ap-northeast-2-ecr-registry
       containers:
       - name: lit
-        image: lit:latest
+        image: asia.gcr.io/nonononono/lit:latest
         imagePullPolicy: Always
         # command: [ "/bin/sh", "-c", "/apps/lit/lit /etc/config/application.conf" ]
         # volumeMounts:
@@ -36,4 +34,3 @@ spec:
         # - name: lit-storage
           # persistentVolumeClaim:
             # claimName: lit-pvc
-
