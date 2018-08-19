@@ -16,7 +16,7 @@ spec:
       - name: lit
         image: asia.gcr.io/nonononono/lit:latest
         imagePullPolicy: Always
-        command: ["sh", "-c", "tail -f /dev/null"]
+        command: ["/bin/sh", "-c", "bundle exec rails s -b 0.0.0.0"]  # TODO: unicorn
         env:
         - name: RAILS_ENV
           value: production

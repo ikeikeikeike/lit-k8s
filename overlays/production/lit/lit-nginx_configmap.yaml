@@ -7,15 +7,16 @@ metadata:
 data:
   lit.conf: |-
 
-    # upstream lit_backend {
-        # server production-lit:3000;
-        # keepalive 64;
-    # }
+    upstream lit_backend {
+        server production-lit:3000;
+        keepalive 64;
+    }
 
     server {
         listen 80; listen [::]:80;
 
         server_name localhost;
+        root /apps/lit;
 
         access_log /dev/stdout main;
         error_log /dev/stderr error;
@@ -24,8 +25,13 @@ data:
         # real_ip_header      X-Forwarded-For;
 
         location / {
-            return 200;
-            # proxy_pass http://lit_backend;
+            if (-f $request_filename) { break; }
+            proxy_pass http://lit_backend;
+        }
+
+        location ~ ^/assets/ {
+            access_log off;
+            root /apps/lit/public;
         }
     }
 
