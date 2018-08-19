@@ -18,10 +18,12 @@ spec:
         imagePullPolicy: Always
         command: ["sh", "-c", "tail -f /dev/null"]
         env:
+        - name: RAILS_ENV
+          value: production
         - name: DB_HOST
           value: 127.0.0.1
         - name: DB_USER
-          value: lit
+          value: postgres
         - name: DB_PASS
           valueFrom:
             secretKeyRef:
