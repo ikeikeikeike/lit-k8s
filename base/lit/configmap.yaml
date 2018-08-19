@@ -16,7 +16,7 @@ data:
         listen 80; listen [::]:80;
 
         server_name localhost;
-        root /apps/lit;
+        root /apps/lit-shared/public;
 
         access_log /dev/stdout main;
         error_log /dev/stderr error;
@@ -31,6 +31,9 @@ data:
 
         location ~ ^/assets/ {
             access_log off;
-            root /apps/lit-shared/public;
+        }
+
+        location ~ ^/spree/ {
+            access_log off;
         }
     }

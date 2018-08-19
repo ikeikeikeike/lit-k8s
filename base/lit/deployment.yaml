@@ -16,7 +16,8 @@ spec:
       - name: lit
         image: asia.gcr.io/nonononono/lit:latest
         imagePullPolicy: Always
-        command: ["/bin/sh", "-c", "cp -pR /apps/lit/public /apps/lit-shared/ && bundle exec rails s -b 0.0.0.0"]
+        command: ["/bin/sh", "-c", "cp -pR ./public /apps/lit-shared/ && bundle exec unicorn_rails -c config/unicorn.rb -E production"]
+        # command: ["/bin/sh", "-c", "cp -pR /apps/lit/public /apps/lit-shared/ && bundle exec rails s -b 0.0.0.0"]
         env:
         - name: RAILS_ENV
           value: production
