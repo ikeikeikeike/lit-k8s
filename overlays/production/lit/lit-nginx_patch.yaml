@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simply-nginx
+  name: lit
 spec:
   template:
     spec:

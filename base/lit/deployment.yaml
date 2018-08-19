@@ -16,7 +16,7 @@ spec:
       - name: lit
         image: asia.gcr.io/nonononono/lit:latest
         imagePullPolicy: Always
-        command: ["/bin/sh", "-c", "bundle exec rails s -b 0.0.0.0"]  # TODO: unicorn
+        command: ["/bin/sh", "-c", "cp -pR /apps/lit/public /apps/lit-shared/ && bundle exec rails s -b 0.0.0.0"]
         env:
         - name: RAILS_ENV
           value: production
@@ -29,6 +29,21 @@ spec:
             secretKeyRef:
               name: litdb
               key: password
+        volumeMounts:
+        - name: lit-shared
+          mountPath: /apps/lit-shared
+
+      - name: simply-nginx
+        image: nginx:alpine
+        ports:
+        - name: simply-nginx
+          containerPort: 80
+        volumeMounts:
+        - name: simply-nginx-conf
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+        - name: lit-shared
+          mountPath: /apps/lit-shared
 
       - name: cloudsql-proxy
         image: gcr.io/cloudsql-docker/gce-proxy:1.11
@@ -38,7 +53,13 @@ spec:
         volumeMounts:
         - name: cloudsql-instance-credentials
           mountPath: /secrets/cloudsql
+
       volumes:
       - name: cloudsql-instance-credentials
         secret:
           secretName: gcread
+      - name: simply-nginx-conf
+        configMap:
+          name: simply-nginx-conf
+      - name: lit-shared
+        emptyDir: {}

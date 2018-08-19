@@ -7,6 +7,7 @@
 # YAML string, with resources separated by document
 # markers ("---").
 resources:
-# - configmap.yaml
+- ../simply-nginx/configmap.yaml
+- configmap.yaml
 - service.yaml
 - deployment.yaml

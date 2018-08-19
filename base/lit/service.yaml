@@ -5,8 +5,13 @@ kind: Service
 metadata:
   name: lit
 spec:
-  ports:
-    - port: 3000
-      targetPort: 3000
+  type: LoadBalancer
   selector:
     base: lit
+  ports:
+  - name: rails
+    port: 3000
+    targetPort: 3000
+  - name: http
+    port: 80
+    targetPort: 80
