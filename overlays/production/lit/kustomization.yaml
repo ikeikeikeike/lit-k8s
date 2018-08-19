@@ -18,7 +18,7 @@ commonLabels:
 # to add to all resources.  Like labels,
 # these are key value pairs.
 commonAnnotations:
-  timestamp: 2018-09-23T00:00:00
+  timestamp: 2018-09-24T00:00:00
 
 # Each entry in this list must resolve to an existing
 # resource definition in YAML.  These are the resource
@@ -62,6 +62,7 @@ secretGenerator:
     password: "echo ${LIT_DBPASS}"
 - name: gcread
   commands:
+    project: "echo ${GOOGLE_PROJECT}"
     credentials.json: "cat ${GOOGLE_CREDENTIALS}"
 
 # Each entry in this list should resolve to a directory
