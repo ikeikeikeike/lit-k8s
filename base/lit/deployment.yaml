@@ -17,10 +17,16 @@ spec:
         image: asia.gcr.io/nonononono/lit:latest
         imagePullPolicy: Always
         command: ["/bin/sh", "-c", "cp -pR ./public /apps/lit-shared/ && bundle exec unicorn_rails -c config/unicorn.rb -E production"]
-        # command: ["/bin/sh", "-c", "cp -pR /apps/lit/public /apps/lit-shared/ && bundle exec rails s -b 0.0.0.0"]
         env:
         - name: RAILS_ENV
           value: production
+        - name: GOOGLE_CREDENTIALS
+          value: /secrets/cloudsql/credentials.json
+        - name: GOOGLE_PROJECT
+          valueFrom:
+            secretKeyRef:
+              name: gcread
+              key: project
         - name: DB_HOST
           value: 127.0.0.1
         - name: DB_USER
@@ -33,6 +39,8 @@ spec:
         volumeMounts:
         - name: lit-shared
           mountPath: /apps/lit-shared
+        - name: cloudsql-instance-credentials
+          mountPath: /secrets/cloudsql
 
       - name: simply-nginx
         image: nginx:alpine
