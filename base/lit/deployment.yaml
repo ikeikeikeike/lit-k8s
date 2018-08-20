@@ -19,7 +19,7 @@ spec:
         command: ["/bin/sh", "-c", "cp -pR ./public /apps/lit-shared/ && bundle exec unicorn_rails -c config/unicorn.rb -E production"]
         env:
         - name: RAILS_LOG_TO_STDOUT
-          value: 1
+          value: "1"
         - name: RAILS_ENV
           value: production
         - name: GOOGLE_CREDENTIALS
