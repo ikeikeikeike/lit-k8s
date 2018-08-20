@@ -1,0 +1,14 @@
+---
+
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: lit
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: lit
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70

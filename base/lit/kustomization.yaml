@@ -8,6 +8,7 @@
 # markers ("---").
 resources:
 - ../simply-nginx/configmap.yaml
+- horizontalpodautoscaler.yaml
 - configmap.yaml
 - service.yaml
 - deployment.yaml
