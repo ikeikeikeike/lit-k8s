@@ -1,0 +1,12 @@
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: lit
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: lit-ipaddress
+spec:
+  backend:
+    serviceName: lit
+    servicePort: 80

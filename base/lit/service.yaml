@@ -5,7 +5,7 @@ kind: Service
 metadata:
   name: lit
 spec:
-  type: LoadBalancer
+  type: NodePort  # type: LoadBalancer
   selector:
     base: lit
   ports:
