@@ -4,10 +4,11 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: lit
-  # TODO
-  # annotations:
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: lit-lb
+    # TODO
     # kubernetes.io/ingress.allow-http: "false"
-    # kubernetes.io/ingress.global-static-ip-name: lit-lb
+  # TODO
   # tls:
   # - secretName: wildcard-lit-com-20190420
 spec:

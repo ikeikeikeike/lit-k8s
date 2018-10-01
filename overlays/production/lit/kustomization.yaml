@@ -18,7 +18,7 @@ commonLabels:
 # to add to all resources.  Like labels,
 # these are key value pairs.
 commonAnnotations:
-  timestamp: 2018-10-12T00:00:00
+  timestamp: 2018-10-13T00:00:00
 
 # Each entry in this list must resolve to an existing
 # resource definition in YAML.  These are the resource
