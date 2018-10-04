@@ -18,7 +18,7 @@ commonLabels:
 # to add to all resources.  Like labels,
 # these are key value pairs.
 commonAnnotations:
-  timestamp: 2018-10-13T00:00:00
+  timestamp: 2018-10-15T00:00:00
 
 # Each entry in this list must resolve to an existing
 # resource definition in YAML.  These are the resource
@@ -57,6 +57,11 @@ resources:
 #     password: "curl -s https://path/to/secrets/password.yaml"
 #   type: Opaque
 secretGenerator:
+- name: lit-tls
+  commands:
+    tls.crt: "cat ~/.kube/lit.cert"
+    tls.key: "cat ~/.kube/lit.key"
+  type: "kubernetes.io/tls"
 - name: litdb
   commands:
     password: "echo ${LIT_DBPASS}"

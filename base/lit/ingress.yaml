@@ -6,12 +6,10 @@ metadata:
   name: lit
   annotations:
     kubernetes.io/ingress.global-static-ip-name: lit-lb
-    # TODO
     # kubernetes.io/ingress.allow-http: "false"
-  # TODO
-  # tls:
-  # - secretName: wildcard-lit-com-20190420
 spec:
+  tls:
+  - secretName: lit-tls
   backend:
     serviceName: lit
     servicePort: 80
