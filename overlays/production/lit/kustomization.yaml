@@ -18,7 +18,7 @@ commonLabels:
 # to add to all resources.  Like labels,
 # these are key value pairs.
 commonAnnotations:
-  timestamp: 2018-11-07T00:00:00
+  timestamp: 2018-11-12T00:00:00
 
 # Each entry in this list must resolve to an existing
 # resource definition in YAML.  These are the resource
@@ -65,6 +65,10 @@ secretGenerator:
 - name: litdb
   commands:
     password: "printf ${LIT_DBPASS}"
+- name: gsuite
+  commands:
+    user: "printf ${GSUITE_USER}"
+    pass: "printf ${GSUITE_PASS}"
 - name: gcread
   commands:
     project: "printf ${GOOGLE_PROJECT}"

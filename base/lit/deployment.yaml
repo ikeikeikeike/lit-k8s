@@ -38,6 +38,16 @@ spec:
             secretKeyRef:
               name: litdb
               key: password
+        - name: GSUITE_USER
+          valueFrom:
+            secretKeyRef:
+              name: gsuite
+              key: user
+        - name: GSUITE_PASS
+          valueFrom:
+            secretKeyRef:
+              name: gsuite
+              key: pass
         volumeMounts:
         - name: lit-shared
           mountPath: /apps/lit-shared
